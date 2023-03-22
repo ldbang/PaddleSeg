@@ -195,41 +195,41 @@ class PPLiteSegHead(nn.Layer):
 
 
     
-class GhostModule(nn.Layer):
-    def __init__(self,
-                 in_channels,
-                 output_channels,
-                 kernel_size=1,
-                 ratio=2,
-                 dw_size=3,
-                 stride=1,
-                 relu=True,
-                 name=None):
-        super(GhostModule, self).__init__()
-        init_channels = int(math.ceil(output_channels / ratio))
-        new_channels = int(init_channels * (ratio - 1))
-        self.primary_conv = ConvBNLayer(
-            in_channels=in_channels,
-            out_channels=init_channels,
-            kernel_size=kernel_size,
-            stride=stride,
-            groups=1,
-            act="relu" if relu else None,
-            name=name + "_primary_conv")
-        self.cheap_operation = ConvBNLayer(
-            in_channels=init_channels,
-            out_channels=new_channels,
-            kernel_size=dw_size,
-            stride=1,
-            groups=init_channels,
-            act="relu" if relu else None,
-            name=name + "_cheap_operation")
+# class GhostModule(nn.Layer):
+#     def __init__(self,
+#                  in_channels,
+#                  output_channels,
+#                  kernel_size=1,
+#                  ratio=2,
+#                  dw_size=3,
+#                  stride=1,
+#                  relu=True,
+#                  name=None):
+#         super(GhostModule, self).__init__()
+#         init_channels = int(math.ceil(output_channels / ratio))
+#         new_channels = int(init_channels * (ratio - 1))
+#         self.primary_conv = ConvBNLayer(
+#             in_channels=in_channels,
+#             out_channels=init_channels,
+#             kernel_size=kernel_size,
+#             stride=stride,
+#             groups=1,
+#             act="relu" if relu else None,
+#             name=name + "_primary_conv")
+#         self.cheap_operation = ConvBNLayer(
+#             in_channels=init_channels,
+#             out_channels=new_channels,
+#             kernel_size=dw_size,
+#             stride=1,
+#             groups=init_channels,
+#             act="relu" if relu else None,
+#             name=name + "_cheap_operation")
 
-    def forward(self, inputs):
-        x = self.primary_conv(inputs)
-        y = self.cheap_operation(x)
-        out = paddle.concat([x, y], axis=1)
-        return out
+#     def forward(self, inputs):
+#         x = self.primary_conv(inputs)
+#         y = self.cheap_operation(x)
+#         out = paddle.concat([x, y], axis=1)
+#         return out
     
     
     
@@ -271,7 +271,7 @@ class PPContextModule(nn.Layer):
             out_channels=out_channels,
             kernel_size=3,
             padding=1)
-        self.conv_ghost = GhostModule()
+#         self.conv_ghost = GhostModule()
 
         self.align_corners = align_corners
 
