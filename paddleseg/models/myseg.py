@@ -47,7 +47,7 @@ class my_PPLiteSeg(nn.Layer):
         resize_mode (str, optional): The resize mode for the upsampling operation in decoder.
             Default: bilinear.
         pretrained (str, optional): The path or url of pretrained model. Default: None.
-
+cm_bin_sizes=[1, 2, 4],
     """
 
     def __init__(self,
@@ -55,7 +55,7 @@ class my_PPLiteSeg(nn.Layer):
                  backbone,
                  backbone_indices=[2, 3, 4],
                  arm_type='UAFM_SpAtten',
-                 cm_bin_sizes=[1, 2, 4],
+                 cm_bin_sizes=[1, 2, 3, 6],
                  cm_out_ch=128,
                  arm_out_chs=[64, 96, 128],
                  seg_head_inter_chs=[64, 64, 64],
@@ -156,7 +156,7 @@ class PPLiteSegHead(nn.Layer):
 
         self.cm = PPContextModule(backbone_out_chs[-1], cm_out_ch, cm_out_ch, cm_bin_sizes)###    0000   #####
         
-        self.ppm = layers.PPModule( in_channels=backbone_out_chs[-1], out_channels=cm_out_ch, bin_sizes=(1, 2, 3, 6), dim_reduction=True,  align_corners=True)
+#         self.ppm = layers.PPModule( in_channels=backbone_out_chs[-1], out_channels=cm_out_ch, bin_sizes=(1, 2, 3, 6), dim_reduction=True,  align_corners=True)
 #         self.cm = layers.PPModule( in_channels=backbone_out_chs[-1], out_channels=cm_out_ch, bin_sizes=(1, 2, 3, 6), dim_reduction=True,  align_corners=True)
         
         
