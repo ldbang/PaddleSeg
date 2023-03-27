@@ -154,10 +154,10 @@ class PPLiteSegHead(nn.Layer):
                  arm_type, resize_mode):
         super().__init__()
 
-#         self.cm = PPContextModule(backbone_out_chs[-1], cm_out_ch, cm_out_ch, cm_bin_sizes)###    0000   #####
+        self.cm = PPContextModule(backbone_out_chs[-1], cm_out_ch, cm_out_ch, cm_bin_sizes)###    0000   #####
         
-#         self.ppm = layers.PPModule( in_channels=backbone_out_chs[-1], out_channels=cm_out_ch, bin_sizes=(1, 2, 3, 6), dim_reduction=True,  align_corners=True)
-        self.cm = layers.PPModule( in_channels=backbone_out_chs[-1], out_channels=cm_out_ch, bin_sizes=(1, 2, 3, 6), dim_reduction=True,  align_corners=True)
+        self.ppm = layers.PPModule( in_channels=backbone_out_chs[-1], out_channels=cm_out_ch, bin_sizes=(1, 2, 3, 6), dim_reduction=True,  align_corners=True)
+#         self.cm = layers.PPModule( in_channels=backbone_out_chs[-1], out_channels=cm_out_ch, bin_sizes=(1, 2, 3, 6), dim_reduction=True,  align_corners=True)
         
         
         assert hasattr(layers,arm_type), \
@@ -298,7 +298,9 @@ class PPContextModule(nn.Layer):
             if out is None:
                 out = x
             else:
-                out += x
+#                 out += x
+                out =paddle.concat(out,1)
+                
 
         out = self.conv_out(out)
         return out
