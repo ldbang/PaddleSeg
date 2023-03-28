@@ -153,9 +153,12 @@ class PPLiteSegHead(nn.Layer):
     def __init__(self, backbone_out_chs, arm_out_chs, cm_bin_sizes, cm_out_ch,
                  arm_type, resize_mode):
         super().__init__()
-
-        self.cm = PPContextModule(backbone_out_chs[-1], cm_out_ch, cm_out_ch,
-                                  cm_bin_sizes)
+# [1, 2, 4,8]
+#         self.cm = PPContextModule(backbone_out_chs[-1], cm_out_ch, cm_out_ch,
+#                                   cm_bin_sizes)
+    
+            self.cm = PPContextModule(backbone_out_chs[-1], cm_out_ch, cm_out_ch,
+                                  [1, 2, 4,8])
 
         assert hasattr(layers,arm_type), \
             "Not support arm_type ({})".format(arm_type)
