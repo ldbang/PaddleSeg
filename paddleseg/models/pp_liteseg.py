@@ -299,7 +299,7 @@ class PPContextModule(nn.Layer):
                 out = x
             else:
 #                 out += x
-                out = x
+                out = x+2
         out = self.conv_out(out)
         return out
 
