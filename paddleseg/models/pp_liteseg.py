@@ -298,8 +298,8 @@ class PPContextModule(nn.Layer):
             if out is None:
                 out = x
             else:
-                out += x
-
+#                 out += x
+                out = x
         out = self.conv_out(out)
         return out
 
