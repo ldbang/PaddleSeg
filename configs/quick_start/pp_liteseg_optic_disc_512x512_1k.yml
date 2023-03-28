@@ -50,5 +50,5 @@ loss:
 model:
   type: PPLiteSeg
   backbone:
-    type: STDC2
-    pretrained: https://bj.bcebos.com/paddleseg/dygraph/PP_STDCNet2.tar.gz
+    type: STDC1
+#     pretrained: https://bj.bcebos.com/paddleseg/dygraph/PP_STDCNet2.tar.gz
