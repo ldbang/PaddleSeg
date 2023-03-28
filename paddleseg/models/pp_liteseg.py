@@ -295,11 +295,11 @@ class PPContextModule(nn.Layer):
                 input_shape,
                 mode='bilinear',
                 align_corners=self.align_corners)
-            if out is None:
-                out = x
-            else:
-#                 out += x
-                out = x+2
+#             if out is None:
+#                 out = x
+#             else:
+# #                 out += x
+#                 out = x+2
         out = self.conv_out(out)
         return out
 
