@@ -55,7 +55,7 @@ class PPLiteSeg(nn.Layer):
                  backbone,
                  backbone_indices=[2, 3, 4],
                  arm_type='UAFM_SpAtten',
-                 cm_bin_sizes=[1, 2, 4],
+                 cm_bin_sizes=[1, 2, 4,8],
                  cm_out_ch=128,
                  arm_out_chs=[64, 96, 128],
                  seg_head_inter_chs=[64, 64, 64],
