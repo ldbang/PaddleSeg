@@ -161,7 +161,7 @@ class PPLiteSegHead(nn.Layer):
 #                                   [1, 2, 4,8])
 #             self.cm = PPModule(backbone_out_chs[-1], cm_out_ch, cm_out_ch,
 #                                   [1, 2, 3,6])
-            self.cm = ASPPModule(backbone_out_chs[-1], cm_out_ch, cm_out_ch,
+        self.cm = ASPPModule(backbone_out_chs[-1], cm_out_ch, cm_out_ch,
                                   [1, 2, 3,6])
         assert hasattr(layers,arm_type), \
             "Not support arm_type ({})".format(arm_type)
